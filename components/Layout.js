@@ -12,7 +12,7 @@ export default function Layout({ title, children }) {
 
       <header>
         <nav className="bg-slate-800">
-          <div className="flex items-center justify-between h-12 px-4 max-w-5xl mx-auto">
+          <div className="container flex items-center justify-between h-12 px-12 max-w-5xl mx-auto">
             <Link href="/">
               <a className="text-lg font-bold">INICIO</a>
             </Link>
@@ -22,7 +22,7 @@ export default function Layout({ title, children }) {
           </div>
         </nav>
       </header>
-      <main className="container m-auto mt-4 px-10 max-w-5xl relative">{children}</main>
+      <main className="relative">{children}</main>
     </>
   );
 }

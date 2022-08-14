@@ -2,6 +2,24 @@ import Image from "next/image";
 import Fishes from "../../models/Fishes";
 import Layout from "../../components/Layout";
 import db from "../../utils/db";
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: { opacity: 0, scale: 1.2 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { ease: "easeOut", delay: 0.5 },
+  },
+};
+const variants2 = {
+  hidden: { opacity: 0, scale: 1.2 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { ease: "easeOut", delay: 0.8 },
+  },
+};
 
 export default function ProductScreen(props) {
   const { fish } = props;
@@ -9,10 +27,10 @@ export default function ProductScreen(props) {
   return (
     <Layout title={fish.nombre}>
       <div className="relative z-20 overflow-hidden py-20 px-10">
-        <div className="h-[50rem] w-[50rem] bg-gradient-to-r from-blue-900 to-blue-200 rounded-full absolute left-2/3 top-5 transform rotate-160 -z-10"></div>
-        <div className="h-[50rem] w-[50rem] bg-gradient-to-r from-purple-400 via-violet-900 to-violet-500 rounded-full absolute -bottom-80 -left-1/2 transform rotate-180 -z-10"></div>
-        <div className="z-50">
-          <div className="grid md:grid-cols-4 card">
+        <div className="fish_bubble1"></div>
+        <div className="fish_bubble2"></div>
+        <div className="z-50 container max-w-5xl mx-auto">
+          <motion.div variants={variants} initial="hidden" animate="visible" className="grid md:grid-cols-4 card">
             <div className="md:col-span-2 flex  flex-col justify-center gap-6">
               <h1 className="text-xl font-bold">{fish.nombre}</h1>
               <ul className="flex flex-col gap-2">
@@ -33,8 +51,8 @@ export default function ProductScreen(props) {
                 priority
               ></Image>
             </div>
-          </div>
-          <div className="flex flex-col gap-10 mt-10 card">
+          </motion.div>
+          <motion.div variants={variants2} initial="hidden" animate="visible" className="flex flex-col gap-10 mt-10 card">
             <div>
               <h1 className="text-lg font-bold mb-4">Descripción</h1>
               <p>{fish.descripcion}</p>
@@ -51,7 +69,7 @@ export default function ProductScreen(props) {
               <h1 className="text-lg font-bold mb-4">Compatibilidad</h1>
               <p>{fish.compatibilidad}</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </Layout>
